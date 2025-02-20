@@ -1,12 +1,37 @@
-class YouTubeAPI:
-    def __init__(self, api_key):
-        self.api_key = api_key
-        self.base_url = "https://www.googleapis.com/youtube/v3"
+from googleapiclient.discovery import build
+import os
+from dotenv import load_dotenv
 
-    def search_similar_tracks(self, genre):
-        # Implement the logic to search for similar tracks based on the genre
-        pass
+load_dotenv()
 
-    def get_video_details(self, video_id):
-        # Implement the logic to retrieve video information
-        pass
+def find_similar_tracks(genre: str) -> list:
+    """
+    Find similar tracks on YouTube based on genre.
+    
+    Args:
+        genre (str): Music genre to search for
+        
+    Returns:
+        list: List of similar track dictionaries
+    """
+    api_key = os.getenv('YOUTUBE_API_KEY')
+    youtube = build('youtube', 'v3', developerKey=api_key)
+    
+    # Search for similar tracks
+    search_response = youtube.search().list(
+        q=f"{genre} music",
+        part='snippet',
+        maxResults=5,
+        type='video'
+    ).execute()
+    
+    # Format results
+    similar_tracks = []
+    for item in search_response['items']:
+        similar_tracks.append({
+            'title': item['snippet']['title'],
+            'channel': item['snippet']['channelTitle'],
+            'videoId': item['id']['videoId']
+        })
+    
+    return similar_tracks
