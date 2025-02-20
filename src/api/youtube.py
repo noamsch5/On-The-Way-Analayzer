@@ -44,3 +44,35 @@ class YouTubeAPI:
     def get_video_details(self, video_id):
         # Implement the logic to retrieve video information
         pass
+
+def find_similar_tracks(genre: str) -> list:
+    """
+    Find similar tracks on YouTube based on genre.
+    """
+    try:
+        api_key = os.environ.get('YOUTUBE_API_KEY')
+        if not api_key:
+            raise ValueError("YouTube API key not found in environment variables")
+            
+        youtube = build('youtube', 'v3', developerKey=api_key)
+        
+        search_response = youtube.search().list(
+            q=f"{genre} music",
+            part='snippet',
+            maxResults=5,
+            type='video'
+        ).execute()
+        
+        similar_tracks = []
+        for item in search_response['items']:
+            similar_tracks.append({
+                'title': item['snippet']['title'],
+                'channel': item['snippet']['channelTitle'],
+                'videoId': item['id']['videoId']
+            })
+        
+        return similar_tracks
+        
+    except Exception as e:
+        print(f"Error in YouTube API: {str(e)}")
+        return []
