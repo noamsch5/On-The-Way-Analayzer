@@ -1,0 +1,20 @@
+api_key: YOUR_YOUTUBE_API_KEY
+audio_format: wav
+genre_list:
+  - EDM
+  - House
+  - Techno
+  - Trance
+  - Dubstep
+seo:
+  description_template: "Discover the latest in {genre} with our analysis of {track_name}. Explore similar tracks and get SEO suggestions!"
+  tags:
+    - music
+    - {genre}
+    - {related_tracks}
+    - {labels}
+upload:
+  max_file_size: 10MB
+  allowed_formats:
+    - wav
+    - mp3

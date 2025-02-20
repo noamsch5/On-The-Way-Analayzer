@@ -1,0 +1,5 @@
+numpy
+scipy
+librosa
+google-api-python-client
+pytest
