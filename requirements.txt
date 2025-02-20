@@ -7,5 +7,5 @@ scipy==1.11.3
 streamlit
 pandas
 numpy
-scikit-learn
 python-dotenv
+
