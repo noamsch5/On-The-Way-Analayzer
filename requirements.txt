@@ -1,5 +1,6 @@
-numpy
-scipy
-librosa
-google-api-python-client
-pytest
+streamlit==1.31.1
+python-dotenv==1.0.0
+google-api-python-client==2.108.0
+librosa==0.10.1
+numpy==1.24.3
+scipy==1.11.3
