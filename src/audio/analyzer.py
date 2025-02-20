@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 import librosa
 import numpy as np
 
@@ -23,3 +24,15 @@ def analyze_track(file_path: str) -> tuple:
     subgenres = ["Bass House", "Deep House", "Commercial House"]
     
     return genre, subgenres, bpm
+=======
+# src/audio/analyzer.py
+
+class TrackAnalyzer:
+    def analyze_track(self, audio_file):
+        # Logic to process the audio file and analyze it
+        pass
+
+    def get_genre(self, audio_file):
+        # Logic to identify the genre and sub-genres of the track
+        pass
+>>>>>>> 78aad65 (Add audio analyzer and YouTube API modules)
